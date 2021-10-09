@@ -1,0 +1,18 @@
+<div class="row">
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    <br />
+    <div>
+        <ul class="list-group">
+            <li *ngFor="
+          let d of showData
+            | paginate
+              : { itemsPerPage: 5, currentPage: page, totalItems: count };
+          let i = index
+        " class="col-md-12 col-xs-12 col-lg-12 list-group-item" [class.active]="i == currentIndex" (click)="setActiveTutorial(d, i)">
+                <b>
+          {{ d.title }}
+        </b>
+            </li>
+        </ul>
+    </div>
+</div>

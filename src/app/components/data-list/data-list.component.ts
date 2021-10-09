@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class DataListComponent implements OnInit {
   count:number =0; // totalLength
   showData : any = [] ;
 
-  constructor(private _service : DataService) { }
+  constructor(private _service : DataService,private router:Router) { }
 
   ngOnInit(): void {
     this._service.getAllData().subscribe(result => {
@@ -32,6 +33,14 @@ export class DataListComponent implements OnInit {
   setActiveTutorial(data: any, index: number): void {
     this.currentData = data;
     this.currentIndex = index;
+    console.log(index);
+    console.log(data);
+
+
+    this.router.navigateByUrl("?id="+this.currentData.id).then(r=> console.log(r)
+    );
+    //console.log();
+
   }
 
 }

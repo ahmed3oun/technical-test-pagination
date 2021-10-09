@@ -1,18 +1,39 @@
 <div class="row">
-    <pagination-controls (pageChange)="page = $event"></pagination-controls>
-    <br />
-    <div>
-        <ul class="list-group">
-            <li *ngFor="
-          let d of showData
-            | paginate
-              : { itemsPerPage: 5, currentPage: page, totalItems: count };
-          let i = index
-        " class="col-md-12 col-xs-12 col-lg-12 list-group-item" [class.active]="i == currentIndex" (click)="setActiveTutorial(d, i)">
-                <b>
-          {{ d.title }}
-        </b>
-            </li>
-        </ul>
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <pagination-controls (pageChange)="page = $event"></pagination-controls>
+        <br />
+        <div>
+            <ul class="list-group">
+                <li *ngFor="
+            let d of showData
+              | paginate
+                : { itemsPerPage: 10, currentPage: page, totalItems: count };
+            let i = index
+          " class="col-md-12 col-xs-12 col-lg-12 list-group-item" [class.active]="i == currentIndex" (click)="setActiveTutorial(d, i)">
+                    <b>
+            <!-- <a routerLink="/data?id={{ d.id }}">{{ d.title }}</a> -->
+            {{ d.title }}
+          </b>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div *ngIf="currentData">
+            <h4>Post</h4>
+            <div>
+                <label><strong>Title:</strong></label> {{ currentData.title }}
+            </div>
+            <div>
+                <label><strong>Body:</strong></label> {{ currentData.body }}
+            </div>
+            <div>
+                <label><strong>Id:</strong></label> {{ currentData.id }}
+            </div>
+            <div>
+                <label><strong>UserId:</strong></label> {{ currentData.userId }}
+            </div>
+        </div>
     </div>
 </div>
